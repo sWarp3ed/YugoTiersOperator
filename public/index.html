@@ -334,6 +334,27 @@
           renderPlayers(filteredPlayers);
         }
       });
+      document.getElementById('addplayer-button').addEventListener('click', () => {
+  const newPlayer = {
+    name: "New Player",        // Change to actual data you want to add
+    tiers: [{ tier: "HT1", peakTier: null }],
+  };
+
+  fetch('https://yugotiersoperator.onrender.com', {   // Use your backend URL here
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newPlayer)
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log('Player added:', data);
+    // You can also call your function to refresh the player list here if you want
+  })
+  .catch(err => console.error('Error:', err));
+});
+    
     });
 </script>
     </head>
